@@ -12,7 +12,13 @@ const colorReducer = (state = initialState, {type ,payload}) => {
             return 'gray';
         case 'RED' :
             return 'red';
-
+        case 'GREEN' :
+            return 'green';
+        case 'BLUE' :
+            return 'blue';
+        case 'YELLOW' :
+            return 'yellow';
+            
         default :
             return state
     }
