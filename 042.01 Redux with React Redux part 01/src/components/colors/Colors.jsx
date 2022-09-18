@@ -6,7 +6,7 @@ const Colors = () => {
     
     <div className="container  ">
         <div className="row  justify-content-center">
-            <div className="col-md-5 ">
+            <div className="col-md-6 ">
                 <div className="card counter ">
                     <div className="card-body">
                     <h3>Background Color</h3>

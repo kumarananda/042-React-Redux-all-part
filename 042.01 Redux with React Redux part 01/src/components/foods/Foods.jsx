@@ -4,8 +4,13 @@ const Foods = () => {
   return (
     <>
         <div className="container  ">
-            <div className="row  justify-content-center">
-                <div className="col-md-5 my-5">
+            <div className="row  justify-content-center align-items-center">
+                <div className="col-md-3 my-5">
+                    <div className="card counter ">
+                        <img  class="card-img-top foodImg" src="..." style={{Height: `250px`}} alt="Card image"/>
+                    </div>
+                </div>
+                <div className="col-md-3 my-5">
                     <div className="card counter ">
                         <div className="card-body">
 
