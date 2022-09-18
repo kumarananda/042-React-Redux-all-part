@@ -10,11 +10,11 @@ const Colors = () => {
                 <div className="card counter ">
                     <div className="card-body">
                     <h3>Background Color</h3>
-                    <button>RED</button>
-                    <button>GREEN</button>
-                    <button>YELLOW</button>
-                    <button>BLUE</button>
-                    <button>GRYE</button>
+                    <button>RED</button> &nbsp;
+                    <button>GREEN</button> &nbsp;
+                    <button>YELLOW</button> &nbsp;
+                    <button>BLUE</button> &nbsp;
+                    <button>GRYE</button> &nbsp;
                     </div>
                 </div>
             </div>
