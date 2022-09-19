@@ -1,4 +1,4 @@
-import { INCREMENT } from "./actionTypes"
+import { DECREMENT, INCREMENT } from "./actionTypes"
 
 
 // make INCREMENT

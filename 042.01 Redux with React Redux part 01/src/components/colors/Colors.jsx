@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeBlue, makeGray, makeGreen, makeRed, makeYellow } from '../../redux/color/action'
+import { makeImgLink } from './makeImgLink'
 
 const Colors = () => {
 
@@ -9,7 +10,6 @@ const Colors = () => {
   const {food} = useSelector(state => state)
 
 
- 
 
 
   return (
@@ -32,7 +32,7 @@ const Colors = () => {
               <div className="col-md-4 ">
                   <div className="card counter ">
                       <div className="card-body">
-                      <img style={{objectFit: 'cover', height: `150px`}} class="foodImg" src={food} alt=""/>
+                      <img style={{objectFit: 'cover', height: `150px`}} class="foodImg" src={makeImgLink(food)} alt=""/>
                       </div>
                   </div>
               </div>

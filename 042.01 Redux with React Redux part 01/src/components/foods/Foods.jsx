@@ -1,18 +1,37 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import potol from "../../assets/potol.bmp"
+import kodu from "../../assets/Kodu.bmp"
+import kumra from "../../assets/kumra.bmp"
+import potato from "../../assets/potato.bmp"
 
-
-
-import assets from "../../assets/Kodu.bmp"
 
 
 
 const Foods = () => {
 
     const dispatch = useDispatch()
-    const {food} = useSelector(state => state)
+    const {food} = useSelector(state => state);
 
+
+    // make food image source
+    const makeImgLink = (food) => {
+        switch (food) {
+            case 'alu':
+                return potato
+            case 'potol':
+                return potol
+            case 'lau':
+                return kodu
+            case 'kumra':
+                return kumra
+        
+            default:
+                return potato
+        }
+
+    }
 
 
   return (
@@ -21,7 +40,7 @@ const Foods = () => {
             <div className="row  justify-content-center align-items-center">
                 <div className="col-md-3 my-5">
                     <div className="card counter ">
-                    <img style={{objectFit: 'cover', height: `150px`}} class="foodImg" src={food} alt=""/>
+                    <img style={{objectFit: 'cover', height: `150px`}} class="foodImg" src={makeImgLink(food)} alt=""/>
                     </div>
                 </div>
                 <div className="col-md-3 my-5">
