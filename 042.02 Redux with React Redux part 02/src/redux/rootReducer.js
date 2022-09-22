@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import colorReducer from "./color/colorReducer";
 import counterReducer from "./counter/counterReducer";
+import devsReducer from "./devs/devsReducer";
 import foodReducer from "./food/foodReducer";
 
 
@@ -11,7 +12,8 @@ import foodReducer from "./food/foodReducer";
 const rootReducer = combineReducers({
     counter : counterReducer,
     color : colorReducer,
-    food : foodReducer
+    food : foodReducer,
+    devs : devsReducer
 });
 
 

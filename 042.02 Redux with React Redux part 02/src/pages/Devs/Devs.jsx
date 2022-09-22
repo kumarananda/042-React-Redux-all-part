@@ -1,20 +1,51 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Devs = () => {
 
-    const [devs, setDevs] = useState({
+    // form value state
+    const [input, setInput] = useState({
         name: "",
         email: '',
         cell: '',
     })
+    const dispatch = useDispatch()
+    const {devs}  = useSelector(state => state.devs)
+    // console.log(devs);
+
+    // handle form input value
     const handleInput = (e) => {
-        setDevs((prevState) => ({
+        setInput((prevState) => ({
             ...prevState,
             [e.target.name] : e.target.value
         }) )
+    }
+
+
+
+    // handle form data submit
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+
+        let data = [];
+
+        if(localStorage.getItem('devs')){
+            data = JSON.parse(localStorage.getItem('devs'))
+        }
+
+        data.push(input);
+
+        localStorage.setItem('devs', JSON.stringify(data))
+
+        dispatch({
+            type : 'DEVS_ADDED',
+            payload : data
+        })
 
     }
+
+
 
     // time 20:19 
     // https://www.youtube.com/watch?v=mneDj2EGKoU&list=PLVAkv8bX85N-oaEI8jGJcmNKBd6yc9N-M&index=126&t=32s
@@ -42,13 +73,19 @@ const Devs = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Ananda</td>
-                                        <td>ananda484@gmail.com</td>
-                                        <td>01913918163</td>
-                                        <td></td>
-                                    </tr>
+                                    {
+                                        devs.map( (data, index) => 
+                                            <tr>
+                                                <td>{index +1}</td>
+                                                <td>{data.name}</td>
+                                                <td>{data.email}</td>
+                                                <td>{data.cell}</td>
+                                                <td></td>
+                                            </tr>
+                                        )
+                                    }
+                                    
+
                                 </tbody>
 
                             </table>
@@ -56,18 +93,18 @@ const Devs = () => {
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <form action="">
+                    <form onSubmit={handleFormSubmit}>
                         <div className="my-3">
                             <label htmlFor="001">Name</label>
-                            <input onChange={handleInput} name='name' value={devs.name} className='form-control' id='001' type="text" />
+                            <input onChange={handleInput} name='name' value={input.name} className='form-control' id='001' type="text" />
                         </div>
                         <div className="my-3">
                             <label htmlFor="002">Email</label>
-                            <input onChange={handleInput} name='email' value={devs.email} className='form-control' id='002' type="text" />
+                            <input onChange={handleInput} name='email' value={input.email} className='form-control' id='002' type="text" />
                         </div>
                         <div className="my-3">
                             <label htmlFor="003">Cell</label>
-                            <input onChange={handleInput} name='cell' value={devs.cell} className='form-control' id='003' type="text" />
+                            <input onChange={handleInput} name='cell' value={input.cell} className='form-control' id='003' type="text" />
                         </div>
                         <div className="my-3">
                             <button className='w-100 btn btn-primary'  type='submit'>Create</button>
