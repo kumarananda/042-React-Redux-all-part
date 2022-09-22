@@ -58,18 +58,301 @@
 
 // https://www.youtube.com/watch?v=nB-nup4ItWU&list=PLVAkv8bX85N-oaEI8jGJcmNKBd6yc9N-M&index=124&t=1s
     // time 93:48
-// 07   update subtitle-key value under settings key (updating)
+
+// // 07   update subtitle-key value under settings key 
+// let data = {
+//     user: [],
+//     settings: {
+//         title : "Sorobindu",
+//         subtitle: 'This is the Sorobindu',
+//         reg_no: 002
+//     },
+//     food : ['alu', 'potol', 'lau']
+// };
+// //add on food key
+//     data = {
+//         ...data, 
+//         food : [...data.food, 'dundol', 'payara'],
+//         settings : { 
+//             ...data.settings,
+//             subtitle : "Wealcom to Sorobindu"
+//         }
+//     }
+//     console.log(data);
+// //result >>
+// {
+//     user: [],
+//     settings: { title: 'Sorobindu', subtitle: 'Wealcom to Sorobindu', reg_no: 2 },
+//     food: [ 'alu', 'potol', 'lau', 'dundol', 'payara' ]
+//   }
+
+
+
+// // 08 (not advence) data.settings.devs[1] selected value update
+// let data = {
+//     user: [],
+//     settings: {
+//         title : "Sorobindu",
+//         subtitle: 'This is the Sorobindu',
+//         reg_no: 002,
+//         devs : [
+//             {
+//                 name : "Ananda",
+//                 age : 30,
+//                 skill : "MERN",
+//                 location : "Panthapath",
+//             },
+//             {
+//                 name : "Achem",
+//                 age : 31,
+//                 skill : "NestJS",
+//                 location : "Mirpur",
+//             },
+//             {
+//                 name : "Adnan",
+//                 age : 32,
+//                 skill : "Wordpress",
+//                 location : "Dhanmondi",
+//             },
+//         ]
+//     },
+//     food : ['alu', 'potol', 'lau']
+// };
+// //add on food key
+//     data = {
+//         ...data, 
+//         settings : { 
+//             ...data.settings,
+//             devs : [
+//                 data.settings.devs[0],
+//                 data.settings.devs[1] = {
+//                     ...data.settings.devs[1],
+//                     name : "Nur Amin",
+//                     age : 310,
+//                     // skill : "Angular",
+//                     // location : "Mirpur",
+//                 },
+//                 data.settings.devs[2],
+//             ]
+            
+//         }
+//     }
+//     console.log(data.settings.devs); //selected ==
+// //result >>
+// [
+//     { name: 'Ananda', age: 30, skill: 'MERN', location: 'Panthapath' },
+//     { name: 'Nur Amin', age: 310, skill: 'NestJS', location: 'Mirpur' },
+//     { name: 'Adnan', age: 32, skill: 'Wordpress', location: 'Dhanmondi' }
+//   ]
+    
+
+// // 09 (not advence)  data.settings.devs[1] // full replace on selected index (pattrn 01 complex)
+// let data = {
+//     user: [],
+//     settings: {
+//         title : "Sorobindu",
+//         subtitle: 'This is the Sorobindu',
+//         reg_no: 002,
+//         devs : [
+//             {
+//                 name : "Ananda",
+//                 age : 30,
+//                 skill : "MERN",
+//                 location : "Panthapath",
+//             },
+//             {
+//                 name : "Achem",
+//                 age : 31,
+//                 skill : "NestJS",
+//                 location : "Mirpur",
+//             },
+//             {
+//                 name : "Adnan",
+//                 age : 32,
+//                 skill : "Wordpress",
+//                 location : "Dhanmondi",
+//             },
+//         ]
+//     },
+//     food : ['alu', 'potol', 'lau']
+// };
+
+//     data = {
+//         ...data, 
+//         settings : { 
+//             ...data.settings,
+//             devs : [
+//                 data.settings.devs[0],
+//                 data.settings.devs[1] = {   // full replace on selected index
+//                     name : "Nur Amin",
+//                     age : 310,
+//                     skill : "Angular",
+//                 },
+//                 data.settings.devs[2],
+//             ]
+            
+//         }
+//     }
+//     console.log(data.settings.devs); //selected
+// //result >>
+//     [
+//     { name: 'Ananda', age: 30, skill: 'MERN', location: 'Panthapath' },
+//     { name: 'Nur Amin', age: 310, skill: 'Angular' },
+//     { name: 'Adnan', age: 32, skill: 'Wordpress', location: 'Dhanmondi' }
+//   ]
+
+// // 10 (not solved) It's make an extra object,  data.settings.devs[1]
+// // full replace on selected index (pattrn 01 complex)
+// let data = {
+//     user: [],
+//     settings: {
+//         title : "Sorobindu",
+//         subtitle: 'This is the Sorobindu',
+//         reg_no: 002,
+//         devs : [
+//             {
+//                 name : "Ananda",
+//                 age : 30,
+//                 skill : "MERN",
+//                 location : "Panthapath",
+//             },
+//             {
+//                 name : "Achem",
+//                 age : 31,
+//                 skill : "NestJS",
+//                 location : "Mirpur",
+//             },
+//             {
+//                 name : "Adnan",
+//                 age : 32,
+//                 skill : "Wordpress",
+//                 location : "Dhanmondi",
+//             },
+//         ]
+//     },
+//     food : ['alu', 'potol', 'lau']
+// };
+
+//     data = {
+//         ...data, 
+//         settings : { 
+//             ...data.settings,
+//             devs : [
+//                 ...data.settings.devs,
+//                 data.settings.devs[1] = {   // full replace on selected index
+//                     name : "Nur Amin",
+//                     age : 310,
+//                     skill : "Angular",
+//                 },
+//             ]
+            
+//         }
+//     }
+//     console.log(data.settings.devs); //selected
+// //result >> not solved >>>>>> ERROR
+// [
+//     { name: 'Ananda', age: 30, skill: 'MERN', location: 'Panthapath' },
+//     { name: 'Achem', age: 31, skill: 'NestJS', location: 'Mirpur' },
+//     { name: 'Adnan', age: 32, skill: 'Wordpress', location: 'Dhanmondi' },
+//     { name: 'Nur Amin', age: 310, skill: 'Angular' }      
+//   ]
+    
+    
+
+// // 11   data.settings.devs[1]  recomended
+// let data = {
+//     user: [],
+//     settings: {
+//         title : "Sorobindu",
+//         subtitle: 'This is the Sorobindu',
+//         reg_no: 002,
+//         devs : [
+//             {
+//                 name : "Ananda",
+//                 age : 30,
+//                 skill : "MERN",
+//                 location : "Panthapath",
+//             },
+//             {
+//                 name : "Achem",
+//                 age : 31,
+//                 skill : "NestJS",
+//                 location : "Mirpur",
+//             },
+//             {
+//                 name : "Adnan",
+//                 age : 32,
+//                 skill : "Wordpress",
+//                 location : "Dhanmondi",
+//             },
+//         ]
+//     },
+//     food : ['alu', 'potol', 'lau']
+// };
+// // 
+// data.settings.devs[1] = {
+//     ...data.settings.devs[1],
+//     name: 'Nur Amin'
+// }
+
+// console.log(data.settings.devs); //selected
+// //result >>
+//     [
+//         { name: 'Ananda', age: 30, skill: 'MERN', location: 'Panthapath' },
+//         { name: 'Nur Amin', age: 31, skill: 'NestJS', location: 'Mirpur' },
+//         { name: 'Adnan', age: 32, skill: 'Wordpress', location: 'Dhanmondi' }
+//     ]
+    
+
+
+
+// 11   use splice & data.settings.devs[1]  recomended
 let data = {
     user: [],
     settings: {
         title : "Sorobindu",
         subtitle: 'This is the Sorobindu',
-        regno: 002
+        reg_no: 002,
+        devs : [
+            {
+                name : "Ananda",
+                age : 30,
+                skill : "MERN",
+                location : "Panthapath",
+            },
+            {
+                name : "Achem",
+                age : 31,
+                skill : "NestJS",
+                location : "Mirpur",
+            },
+            {
+                name : "Adnan",
+                age : 32,
+                skill : "Wordpress",
+                location : "Dhanmondi",
+            },
+        ]
     },
-    food : ['alu', 'potol', 'lau']
+    food : ['alu', 'potol', 'lau', 'kumra', 'apple' ]
 };
-//add on food key
-    data = {...data, food : [...data.food, 'dundol', 'payara']}
-    console.log(data);
-//result >>
-    
+// update
+data.settings.devs[1] = {
+    ...data.settings.devs[1],
+    name: 'Nur Amin'
+}
+    data.food.splice(2,1)
+
+console.log(data); //selected
+//result >> let for skip error
+let testresult = 
+ {
+    user: [],
+    settings: {
+      title: 'Sorobindu',
+      subtitle: 'This is the Sorobindu',
+      reg_no: 2,
+      devs: [ [Object], [Object], [Object] ]
+    },
+    food: [ 'alu', 'potol', 'kumra', 'apple' ]
+  }
