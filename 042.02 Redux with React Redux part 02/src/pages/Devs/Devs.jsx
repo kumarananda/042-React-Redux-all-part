@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { createDevs } from '../../redux/devs/action'
 
 const Devs = () => {
 
@@ -28,20 +29,7 @@ const Devs = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
-        let data = [];
-
-        if(localStorage.getItem('devs')){
-            data = JSON.parse(localStorage.getItem('devs'))
-        }
-
-        data.push(input);
-
-        localStorage.setItem('devs', JSON.stringify(data))
-
-        dispatch({
-            type : 'DEVS_ADDED',
-            payload : data
-        })
+        dispatch(createDevs(input))
 
     }
 
