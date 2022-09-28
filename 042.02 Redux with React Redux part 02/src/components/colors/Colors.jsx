@@ -1,4 +1,5 @@
 import React from 'react'
+import  { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeBlue, makeGray, makeGreen, makeRed, makeYellow } from '../../redux/color/action'
 import { makeImgLink } from './makeImgLink'
@@ -8,7 +9,6 @@ const Colors = () => {
   // use despatch
   const dispatch = useDispatch() 
   const {food} = useSelector(state => state)
-
 
 
   return (

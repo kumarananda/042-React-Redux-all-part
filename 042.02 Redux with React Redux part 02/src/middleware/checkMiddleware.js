@@ -20,7 +20,10 @@
 // create check middleware 
 const checkMiddleware = (store) => (next) => (action) => {
     if(action.type === 'RED' || action.type === 'YELLOW' ){
-        next(action) // only allowed types will be effective
+        next(action) // only allowed types will be effective (RED & YELLOW)
+    }else{
+        // console.log("this type is ont allowed");
+        next({type: "BLUE"})
     }
 
 }
