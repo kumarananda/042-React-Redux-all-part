@@ -4,9 +4,11 @@ import colors from "colors";
 import dotenv from 'dotenv';
 import studentRoutes from './routes/studentsRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 import mongoDBConnect from "./config/db.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import cookieParser from "cookie-parser";
+import cors from 'cors'
 
 // express init
 const app = express()
@@ -18,6 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended : false}))
 app.use(cookieParser());
 
+// 
+app.use(cors())
+
 
 // env variabels
 const PORT = process.env.SERVER_PORT || 5000
@@ -27,6 +32,7 @@ const PORT = process.env.SERVER_PORT || 5000
 // routes
 app.use('/api/students', studentRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/v1/product', productRoutes);
 
 // error handler
 app.use(errorHandler)

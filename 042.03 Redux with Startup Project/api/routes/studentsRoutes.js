@@ -1,5 +1,5 @@
 import express from 'express';
-import { createStudent, deleteStudent, editStudent, getAllStudent, getSingleStudent } from '../controllers/studentController.js';
+import { createProduct } from '../controllers/productController.js';
 
 
 //init router
