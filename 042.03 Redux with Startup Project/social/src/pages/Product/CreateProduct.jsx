@@ -14,6 +14,7 @@ const CreateProduct = () => {
         stock: '',
         photo: '', 
         file : '',
+        gall : '',
         category: [],
         tags: []
     })
@@ -71,6 +72,13 @@ const CreateProduct = () => {
             file : e.target.files[0]
         }));
     }
+    // handle Product Gallery update
+    const handleProductGallery = (e) => {
+        setInput((prevState) => ({
+            ...prevState,
+            gall : e.target.files
+        }));
+    }
 
     // handle from submit
     const handleFormdataSubmit = async (e) => {
@@ -86,6 +94,7 @@ const CreateProduct = () => {
         data.append('tags', input.tags);
 
         data.append('photo', input.file);
+        data.append('gallery', input.gall);
 
         try {
             await axios.post('http://localhost:5050/api/v1/product/', data).then(res => {
@@ -165,6 +174,10 @@ const CreateProduct = () => {
                     <div className="my-3">
                         <label htmlFor="">Photo</label>
                         <input onChange={handleProductPhoto}  name='photo' className='form-control' type="file"   />
+                    </div>
+                    <div className="my-3">
+                        <label htmlFor="">Photo</label>
+                        <input onChange={handleProductGallery}  name='gallery' multiple className='form-control' type="file"   />
                     </div>
                                         
                     <div className="my-3">

@@ -19,8 +19,12 @@ const ProductSchema = mongoose.Schema({
         type : Number,
     },
     photo : {
-        type : String,
-        default : 'p.png'
+        type : Array,
+        default : ['p.png']
+    },
+    gallery : {
+        type : Array,
+        default : ['p.png']
     },
     category : {
         type : Array,

@@ -37,14 +37,31 @@ const storage = multer.diskStorage({
             cb(null, 'media/users/cv')
         }else if (file.fieldname == 'photo'){
             cb(null, path.join(__dirname, 'api/public/images/product/'))
+        }else if(file.fieldname == 'gallery'){
+            cb(null, path.join(__dirname, 'api/public/images/product/gall'))
         }
         
     }
 });
 
+// // for single photo
+// const ProductMulter = multer({
+//     storage
+// }).single('photo')
+
+// for multiple photo or file
 const ProductMulter = multer({
     storage
-}).single('photo')
+}).fields([
+    {
+        name: 'photo',
+        maxCount: 1
+    },
+    {
+        name: 'gallery',
+        maxCount: 10
+    }
+])
 
 // product routes
 router.get('/', getAllProduct)
