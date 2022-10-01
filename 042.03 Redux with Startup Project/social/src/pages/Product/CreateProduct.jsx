@@ -80,6 +80,8 @@ const CreateProduct = () => {
         }));
     }
 
+    //time 50:44 https://www.youtube.com/watch?v=LPpFueI0-Y8&list=PLVAkv8bX85N-oaEI8jGJcmNKBd6yc9N-M&index=130
+
     // handle from submit
     const handleFormdataSubmit = async (e) => {
         e.preventDefault()
