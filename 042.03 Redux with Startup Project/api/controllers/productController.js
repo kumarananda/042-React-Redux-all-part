@@ -13,7 +13,10 @@ export const getAllProduct = async (req, res, next) => {
 export const createProduct = async (req, res, next) => {
 
     try {
-        const products = await Product.create(req.body);
+        const products = await Product.create({
+            ...req.body,
+            photo : req.file.filename
+        });
 
         // if success full
         if(products){
@@ -50,7 +53,7 @@ export const getSingalProduct = async (req, res, next) => {
     
 }
 
-// get singlae product
+// delete singlae product
 export const deleteProduct = async (req, res, next) => {
 
     const {id } = req.params;
@@ -69,6 +72,28 @@ export const deleteProduct = async (req, res, next) => {
             })
         }
 
+        
+    } catch (error) {
+        next(createError(error))
+    }
+
+    
+}
+
+// get singlae product
+export const updateProduct = async (req, res, next) => {
+    const {id } = req.params;
+
+
+    try {
+        const product = await Product.findByIdAndUpdate(id, req.body);
+        
+        if(product){
+            res.status(201).json({
+                message : "Product Updated successful"
+            })
+        }
+        
         
     } catch (error) {
         next(createError(error))

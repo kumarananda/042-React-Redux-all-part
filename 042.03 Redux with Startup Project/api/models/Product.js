@@ -20,7 +20,15 @@ const ProductSchema = mongoose.Schema({
     },
     photo : {
         type : String,
-        required : true
+        default : 'p.png'
+    },
+    category : {
+        type : Array,
+        default  : []
+    },
+    tags : {
+        type : Array,
+        default :[]
     },
 
 },
