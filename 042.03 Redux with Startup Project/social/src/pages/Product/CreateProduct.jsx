@@ -18,6 +18,7 @@ const CreateProduct = () => {
         category: [],
         tags: []
     })
+    console.log(input);
 
     // handle input form value
     const handleInputValue = (e)=> {
@@ -95,7 +96,10 @@ const CreateProduct = () => {
         data.append('category', input.category);
         data.append('tags', input.tags);
 
-        data.append('photo', input.file);
+        data.append('photo', input.file[0]);
+
+        input.
+
         data.append('gallery', input.gall);
 
         try {

@@ -1,8 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Product.css';
 
 const Product = () => {
+
+    const {products} = useSelector(state => state.product);
+    console.log(products);
+
   return (
     <div className='container my-5'>
         <div className="row justify-content-center">
@@ -28,21 +33,26 @@ const Product = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Sony A7s</td>
-                                <td>1200</td>
-                                <td></td>
-                                <td>12</td>
-                                <td><img src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" /></td>
-                                <td>
-                                    <a className='text-info' href="#"><i className='fa fa-eye'></i></a>
-                                    <a className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
-                                    <a className='text-danger' href="#"><i className='fa fa-trash'></i></a>
-                                </td>
-                            </tr>
+                            {
+                                products.map((data, index) => 
+                                    <tr>
+                                        <td>{index + 1 }</td>
+                                        <td>{data.name}</td>
+                                        <td>{data.regular_price}</td>
+                                        <td>{data.sale_price}</td>
+                                        <td>{data.stock}</td>
+                                        <td><img src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" /></td>
+                                        <td>
+                                            <a className='text-info' href="#"><i className='fa fa-eye'></i></a>
+                                            <a className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
+                                            <a className='text-danger' href="#"><i className='fa fa-trash'></i></a>
+                                        </td>
+                                    </tr>
+                                )
+                            }
 
-                            <tr>
+
+                            {/* <tr>
                                 <td>1</td>
                                 <td>Sony A7s</td>
                                 <td>1200</td>
@@ -54,7 +64,7 @@ const Product = () => {
                                     <a className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
                                     <a className='text-danger' href="#"><i className='fa fa-trash'></i></a>
                                 </td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                     </table>
                     </div>

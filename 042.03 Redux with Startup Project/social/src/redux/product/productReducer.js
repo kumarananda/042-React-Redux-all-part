@@ -10,7 +10,11 @@ const productReducer = (state = initialState, {type, payload}) => {
 
     switch (type) {
         case GET_ALL_PRODUCT:
-            return 'ff'
+            return {
+                ...state,
+                products : payload
+
+            }
 
 
     

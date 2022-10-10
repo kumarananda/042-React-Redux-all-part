@@ -14,9 +14,11 @@ export const getAllProduct = async (req, res, next) => {
 export const createProduct = async (req, res, next) => {
 
     try {
+
         const products = await Product.create({
             ...req.body,
-            photo : req.file.filename
+            photo : req.file.filename,
+            
         });
 
         // if success full

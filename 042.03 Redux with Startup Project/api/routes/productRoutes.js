@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
         }else if (file.fieldname == 'photo'){
             cb(null, path.join(__dirname, 'api/public/images/product/'))
         }else if(file.fieldname == 'gallery'){
-            cb(null, path.join(__dirname, 'api/public/images/product/gall'))
+            cb(null, path.join(__dirname, 'api/public/images/product/'))
         }
         
     }

@@ -5,13 +5,18 @@ import Shop from "./pages/Shop/Shop";
 import './App.css';
 import axios from "axios";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAllProduct } from "./redux/product/action";
 
 function App() {
+
+  const dispatch = useDispatch();
+  
 
   useEffect(() => {
     axios.get('http://localhost:5050/api/v1/product')
     .then(res => {
-  
+      dispatch(getAllProduct(res.data))
     })
     .catch(error => {
       console.log(error);
