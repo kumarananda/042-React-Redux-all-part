@@ -3,6 +3,7 @@ import createError from "./createError.js";
 
 
 // get all product
+
 export const getAllProduct = async (req, res, next) => {
 
     const products = await Product.find();

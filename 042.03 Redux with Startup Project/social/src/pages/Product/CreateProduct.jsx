@@ -99,7 +99,8 @@ const CreateProduct = () => {
         data.append('gallery', input.gall);
 
         try {
-            await axios.post('http://localhost:5050/api/v1/product/', data).then(res => {
+            await axios.post('http://localhost:5050/api/v1/product/', data)
+            .then(res => {
                 setInput((prevState) => ({
                     name : '', 
                     reg_price: '', 
@@ -124,21 +125,20 @@ const CreateProduct = () => {
                 button: "Aww yiss!",
                 });
                 console.log(error);
-            })
-
-            
+            })            
             
 
-    } catch (error) {
-        // swal({
-        // title: "Faild job!",
-        // text: "Product not Update",
-        // icon: "warning",
-        // button: "Aww yiss!",
-        // });
-        console.log(error);
+        } catch (error) {
+            // swal({
+            // title: "Faild job!",
+            // text: "Product not Update",
+            // icon: "warning",
+            // button: "Aww yiss!",
+            // });
+            console.log(error);
 
-    }}
+        }
+    }
 
 
   return (

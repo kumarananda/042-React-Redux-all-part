@@ -1,19 +1,12 @@
 import { combineReducers } from "redux";
-import colorReducer from "./color/colorReducer";
-import counterReducer from "./counter/counterReducer";
-import devsReducer from "./devs/devsReducer";
-import foodReducer from "./food/foodReducer";
-
+import productReducer from "./product/productReducer";
 
 
 
 
 // create root reducer
 const rootReducer = combineReducers({
-    counter : counterReducer,
-    color : colorReducer,
-    food : foodReducer,
-    devs : devsReducer
+    product : productReducer
 });
 
 

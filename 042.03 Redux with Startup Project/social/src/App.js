@@ -3,8 +3,21 @@ import CreateProduct from "./pages/Product/CreateProduct";
 import Product from "./pages/Product/Product";
 import Shop from "./pages/Shop/Shop";
 import './App.css';
+import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
+
+  useEffect(() => {
+    axios.get('http://localhost:5050/api/v1/product')
+    .then(res => {
+  
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  })
+
   return (
     <>
 
