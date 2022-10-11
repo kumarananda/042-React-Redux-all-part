@@ -13,14 +13,14 @@ const __dirname = resolve()
 const storage = multer.diskStorage({
     
     filename : (req, file, cb) => {
-        console.log(file);
-        // console.log(req.body);
+        // console.log(file);
+        console.log(req.body);
         if(file.fieldname == 'gallery'){
             let extName =path.extname(file.originalname)
             // console.log(extName);
             // let fileName = Date.now() +'_' + Math.ceil(Math.random() * 100000)  + '.' + extName;
             let fileName = Date.now() +'_' + Math.ceil(Math.random() * 100000) + extName;
-            console.log(fileName);
+            // console.log(fileName);
             cb(null , fileName)
         }else if(file.fieldname == 'photo'){
             let extName =path.extname(file.originalname)
