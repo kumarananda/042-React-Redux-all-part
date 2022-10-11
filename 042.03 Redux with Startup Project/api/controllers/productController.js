@@ -5,19 +5,27 @@ import createError from "./createError.js";
 // get all product
 
 export const getAllProduct = async (req, res, next) => {
-
+    
     const products = await Product.find();
     res.status(200).json(products)
 }
 
 // get all product
 export const createProduct = async (req, res, next) => {
+    console.log('createProduct');
+    let gallery = [];
+    for( let i = 0; i < req.files.gallery.length; i++ ){
+        gallery.push(req.files.gallery[i].filename);
+    }
 
     try {
 
         const products = await Product.create({
             ...req.body,
-            photo : req.file.filename,
+            photo : req.files.filename,
+            gallery : gallery,
+            category : req.body.category.split(','),
+            tags : req.body.tags.split(','),
             
         });
 

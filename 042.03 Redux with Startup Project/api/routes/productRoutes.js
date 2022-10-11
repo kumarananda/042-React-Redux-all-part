@@ -13,7 +13,16 @@ const __dirname = resolve()
 const storage = multer.diskStorage({
     
     filename : (req, file, cb) => {
-        if(file.fieldname == 'photo'){
+        console.log(file);
+        // console.log(req.body);
+        if(file.fieldname == 'gallery'){
+            let extName =path.extname(file.originalname)
+            // console.log(extName);
+            // let fileName = Date.now() +'_' + Math.ceil(Math.random() * 100000)  + '.' + extName;
+            let fileName = Date.now() +'_' + Math.ceil(Math.random() * 100000) + extName;
+            console.log(fileName);
+            cb(null , fileName)
+        }else if(file.fieldname == 'photo'){
             let extName =path.extname(file.originalname)
             // console.log(extName);
             // let fileName = Date.now() +'_' + Math.ceil(Math.random() * 100000)  + '.' + extName;
@@ -51,7 +60,7 @@ const storage = multer.diskStorage({
 
 // for multiple photo or file
 const ProductMulter = multer({
-    storage
+    storage : storage
 }).fields([
     {
         name: 'photo',
@@ -63,9 +72,10 @@ const ProductMulter = multer({
     }
 ])
 
+
 // product routes
 router.get('/', getAllProduct)
-router.post('/',ProductMulter, createProduct)
+router.post('/', ProductMulter, createProduct)
 router.route('/:id').get(getSingalProduct).delete(deleteProduct).put(updateProduct)
 
 

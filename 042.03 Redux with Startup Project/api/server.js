@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(cors())
 
 // env variabels
-const PORT = process.env.SERVER_PORT || 5000
+const PORT = process.env.SERVER_PORT 
 
 
 

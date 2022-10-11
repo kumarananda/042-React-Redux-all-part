@@ -87,6 +87,8 @@ const CreateProduct = () => {
     const handleFormdataSubmit = async (e) => {
         e.preventDefault()
 
+
+
         const data = new FormData();
 
         data.append('name', input.name);
@@ -96,15 +98,17 @@ const CreateProduct = () => {
         data.append('category', input.category);
         data.append('tags', input.tags);
 
-        data.append('photo', input.file[0]);
+        data.append('photo', input.file);
 
-        input.
-
-        data.append('gallery', input.gall);
+        for( let i= 0; i < input.gall.length ; i++ ){
+            data.append('gallery', input.gall[i]);
+        }
+        
 
         try {
             await axios.post('http://localhost:5050/api/v1/product/', data)
             .then(res => {
+                // console.log(res.data);
                 setInput((prevState) => ({
                     name : '', 
                     reg_price: '', 
