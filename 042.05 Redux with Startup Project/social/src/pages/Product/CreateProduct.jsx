@@ -105,47 +105,7 @@ const CreateProduct = () => {
         }
         
         console.log(data);
-        try {
-            await axios.post('http://localhost:5050/api/v1/product/', data)
-            .then(res => {
-                // console.log(res.data);
-                // setInput((prevState) => ({
-                //     name : '', 
-                //     reg_price: '', 
-                //     sale_price: '', 
-                //     stock: '',
-                //     photo: '', 
-                // }))
-                // // for checkbox or radio button data cleration
-                // e.target.reset();
-    
-                swal({
-                    title: "Good job!",
-                    text: "Product Addad Succful",
-                    icon: "success",
-                    button: "Ok",
-                });
-            }).catch(error => {
-                swal({
-                title: "Faild job!",
-                text: "Product not Update",
-                icon: "warning",
-                button: "Aww yiss!",
-                });
-                console.log(error);
-            })            
-            
 
-        } catch (error) {
-            // swal({
-            // title: "Faild job!",
-            // text: "Product not Update",
-            // icon: "warning",
-            // button: "Aww yiss!",
-            // });
-            console.log(error);
-
-        }
     }
 
 

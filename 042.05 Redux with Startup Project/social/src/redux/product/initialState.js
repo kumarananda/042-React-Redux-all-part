@@ -3,7 +3,9 @@
 
 // initaila state
  const initialState = {
-    products : []
+    products : [],
+    skileton : false,
+    error : null
 };
 
 export default initialState;

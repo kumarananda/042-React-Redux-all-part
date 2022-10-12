@@ -6,22 +6,26 @@ import './App.css';
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getAllProduct } from "./redux/product/action";
+import { productFail, productRequest, productSuccess } from "./redux/product/action";
 
 function App() {
 
   const dispatch = useDispatch();
   
-
+// 31:00 https://www.youtube.com/watch?v=XmcViFMk9V8&list=PLVAkv8bX85N-oaEI8jGJcmNKBd6yc9N-M&index=131
   useEffect(() => {
+
+    dispatch(productRequest())
+
     axios.get('http://localhost:5050/api/v1/product')
     .then(res => {
-      dispatch(getAllProduct(res.data))
+      dispatch(productSuccess(res.data))
     })
     .catch(error => {
       console.log(error);
+      dispatch(productFail(error.message))
     })
-  })
+  },[dispatch])
 
   return (
     <>

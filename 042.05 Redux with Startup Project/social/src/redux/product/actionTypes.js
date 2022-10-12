@@ -1,9 +1,5 @@
 
-
-export const GET_ALL_PRODUCT = 'GET_ALL_PRODUCT';
-
-
-
-
-
+export const PRODUCT_REQUEST = 'PRODUCT_REQUEST';
+export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
+export const PRODUCT_FAIL = 'PRODUCT_FAIL';
 
