@@ -22,7 +22,7 @@ const ProductSchema = mongoose.Schema({
         type : String,
         default : 'p.png'
     },
-    
+
     gallery : {
         type : Array,
         default : []
@@ -44,3 +44,4 @@ const ProductSchema = mongoose.Schema({
 
 // export Schema
 export default mongoose.model('Product', ProductSchema)
+//   nhhhjh test
