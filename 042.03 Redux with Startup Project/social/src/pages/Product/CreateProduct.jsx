@@ -18,7 +18,7 @@ const CreateProduct = () => {
         category: [],
         tags: []
     })
-    console.log(input);
+    console.log(input.category);
 
     // handle input form value
     const handleInputValue = (e)=> {
@@ -104,20 +104,20 @@ const CreateProduct = () => {
             data.append('gallery', input.gall[i]);
         }
         
-
+        console.log(data);
         try {
             await axios.post('http://localhost:5050/api/v1/product/', data)
             .then(res => {
                 // console.log(res.data);
-                setInput((prevState) => ({
-                    name : '', 
-                    reg_price: '', 
-                    sale_price: '', 
-                    stock: '',
-                    photo: '', 
-                }))
-                // for checkbox or radio button data cleration
-                e.target.reset();
+                // setInput((prevState) => ({
+                //     name : '', 
+                //     reg_price: '', 
+                //     sale_price: '', 
+                //     stock: '',
+                //     photo: '', 
+                // }))
+                // // for checkbox or radio button data cleration
+                // e.target.reset();
     
                 swal({
                     title: "Good job!",

@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
     
     filename : (req, file, cb) => {
         // console.log(file);
-        console.log(req.body);
+        // console.log(req.body);
         if(file.fieldname == 'gallery'){
             let extName =path.extname(file.originalname)
             // console.log(extName);
