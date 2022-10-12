@@ -22,6 +22,7 @@ const ProductSchema = mongoose.Schema({
         type : String,
         default : 'p.png'
     },
+    
     gallery : {
         type : Array,
         default : []
