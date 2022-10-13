@@ -6,7 +6,7 @@ import './Product.css';
 const Product = () => {
 
     const {products} = useSelector(state => state.product);
-    console.log(products);
+    // console.log(products);
 
   return (
     <div className='container my-5'>

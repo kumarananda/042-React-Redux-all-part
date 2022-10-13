@@ -3,9 +3,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert' 
+import { useDispatch } from 'react-redux';
+import { createProduct } from '../../redux/product/action';
 
 const CreateProduct = () => {
 
+    // use dispatch 
+    const dispatch = useDispatch()
     // form filed state 
     const [input, setInput] = useState({
         name : '', 
@@ -103,8 +107,9 @@ const CreateProduct = () => {
         for( let i= 0; i < input.gall.length ; i++ ){
             data.append('gallery', input.gall[i]);
         }
-        
-        console.log(data);
+
+
+        dispatch(createProduct(data))
 
     }
 

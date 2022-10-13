@@ -12,7 +12,7 @@ export const getAllProduct = async (req, res, next) => {
 
 // get all product
 export const createProduct = async (req, res, next) => {
-    console.log(req.files.photo[0].filename);
+    // console.log(req.files.photo[0].filename);
     let gallery = [];
     for( let i = 0; i < req.files.gallery.length; i++ ){
         gallery.push(req.files.gallery[i].filename);
