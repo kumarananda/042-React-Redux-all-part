@@ -26,7 +26,8 @@ app.use(cors())
 // env variabels
 const PORT = process.env.SERVER_PORT 
 
-
+// static folder 
+app.use(express.static('api/public'));
 
 // routes
 app.use('/api/students', studentRoutes);

@@ -1,5 +1,6 @@
 import axios from "axios"
-import { PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS } from "./actionTypes"
+import { PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
+import swal from "sweetalert"
 
 
 // product request
@@ -13,11 +14,22 @@ export  const productSuccess = (payload) => ({
     payload
 })
 
+
 // product request
 export  const productFail = (payload) => ({ 
     type : PRODUCT_FAIL,
     payload
 })
+// product REQ_SUCCESS
+export  const req_success = () => ({ 
+    type : REQ_SUCCESS
+})
+// product REQ_FAIL
+export  const req_fail = () => ({ 
+    type : REQ_FAIL
+})
+
+
 
 // get all product
 export const getAllProduct = () => async (dispatch) => {
@@ -38,21 +50,77 @@ export const getAllProduct = () => async (dispatch) => {
 
 }
 
-// create product
-export const createProduct = (data) => async (dispatch) => {
+// single data from previously loded redux data 
+export const getSingleProduFromRedux =   (id) => ({ 
+    type : SINGLE_PRODUCT_F_REUDX,
+    payload : id
+})
+
+// single product request //pattern >> data fron server 
+export  const singleProduct = (payload) => ({ 
+    type : SINGLE_PRODUCT,
+    payload
+})
+
+// get all product
+export const getSingleProduct = (id) => async (dispatch) => {
     
     try{
         
-        await axios.post('http://localhost:5050/api/v1/product', data)
+        await axios.get(`http://localhost:5050/api/v1/product/${id}`)
         .then(res => {
-          dispatch(getAllProduct())
+            dispatch(singleProduct(res.data)) //pattern >> data fron server 
+
         })
-        .catch(error => dispatch(productFail(error.message)) )
+        .catch(error =>  dispatch(productFail(error.message))
+        )
 
     }catch(error){
-
         dispatch(productFail(error.message))
     }
     
 
 }
+
+// create product
+export const createProduct = (data,e, setInput) => async (dispatch) => {
+    
+    try{
+        console.log(data);
+        await axios.post('http://localhost:5050/api/v1/product', data)
+        .then(res => {
+        // req_success()
+        dispatch(getAllProduct())
+        swal('Successfull', 'Product Created')
+        e.target.reset()
+        setInput({
+            name : '', 
+            reg_price: '', 
+            sale_price: '', 
+            stock: '',
+            photo: '', 
+
+        })
+
+          
+        })
+        .catch(error => dispatch(() => {
+            req_fail()
+            productFail(error.message)
+            
+        }) )
+
+    }catch(error){
+
+        // dispatch(productFail(error.message))
+        dispatch(() => {
+            req_fail()
+            productFail(error.message)
+            
+        })
+    }
+    
+
+}
+
+

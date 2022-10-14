@@ -3,13 +3,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert' 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createProduct } from '../../redux/product/action';
 
 const CreateProduct = () => {
 
     // use dispatch 
     const dispatch = useDispatch()
+
+    // use selector 
+    const { reqSucc  } = useSelector(state => state.product);
     // form filed state 
     const [input, setInput] = useState({
         name : '', 
@@ -22,7 +25,7 @@ const CreateProduct = () => {
         category: [],
         tags: []
     })
-    console.log(input.category);
+    console.log(input);
 
     // handle input form value
     const handleInputValue = (e)=> {
@@ -108,8 +111,32 @@ const CreateProduct = () => {
             data.append('gallery', input.gall[i]);
         }
 
+        if(input.name || input.reg_price ){
 
-        dispatch(createProduct(data))
+            dispatch(createProduct(data, e, setInput))
+
+        }else{
+            swal('Faild!', 'Name & reg price is not be empty')
+        }
+
+        
+
+        // if(!error){
+        //     swal('Successfull', 'Product Created')
+        //     e.target.reset()
+        //     setInput({
+        //         name : '', 
+        //         reg_price: '', 
+        //         sale_price: '', 
+        //         stock: '',
+        //         photo: '', 
+    
+        //     })
+            
+        // }else{
+        //     swal('Faild!', 'Product not Created')
+        // }
+
 
     }
 

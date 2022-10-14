@@ -2,6 +2,7 @@ import express from 'express';
 import { createProduct, deleteProduct, getAllProduct, getSingalProduct, updateProduct } from '../controllers/productController.js';
 import multer from 'multer';
 import path, { resolve } from 'path';
+import createError from '../controllers/createError.js';
 
 
 //init router
@@ -13,7 +14,8 @@ const __dirname = resolve()
 const storage = multer.diskStorage({
     
     filename : (req, file, cb) => {
-        // console.log(file);
+        try {
+                  // console.log(file);
         // console.log(req.body);
         if(file.fieldname == 'gallery'){
             let extName =path.extname(file.originalname)
@@ -37,18 +39,32 @@ const storage = multer.diskStorage({
             cb(null , fileName)
         }
 
+            
+        } catch (error) {
+            console.log(error);
+            createError(error)
+        }
+  
     },
     destination : (req, file, cb) => {
         
         // cb(null, 'media/users')
-
-        if(file.fieldname == 'cv'){
-            cb(null, 'media/users/cv')
-        }else if (file.fieldname == 'photo'){
-            cb(null, path.join(__dirname, 'api/public/images/product/'))
-        }else if(file.fieldname == 'gallery'){
-            cb(null, path.join(__dirname, 'api/public/images/product/'))
+        try {
+            if(file.fieldname == 'cv'){
+                cb(null, 'media/users/cv')
+            }else if (file.fieldname == 'photo'){
+                cb(null, path.join(__dirname, 'api/public/images/product/'))
+            }else if(file.fieldname == 'gallery'){
+                cb(null, path.join(__dirname, 'api/public/images/product/'))
+            }
+            
+        } catch (error) {
+            console.log(error);
+            createError(error)
         }
+  
+
+
         
     }
 });

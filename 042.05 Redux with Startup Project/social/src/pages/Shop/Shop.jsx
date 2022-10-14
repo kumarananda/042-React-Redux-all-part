@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getSingleProduct, getSingleProduFromRedux } from '../../redux/product/action';
 import './Shop.css';
-import SingleProduct from './SingleProduct';
-
+import SingleProductModal from './SingleProductModal';
+import Skeleton from 'react-loading-skeleton'
 
 const Shop = () => { 
     const [single, setSingle] = useState(false);
+    const dispatch = useDispatch()
     
-    const handleSingleShow = () => setSingle(true);
+    const handleSingleShow = (id) => {
+        dispatch(getSingleProduFromRedux(id))
+        setSingle(true)
+    };
     const handleSingleHide = () => setSingle(false);
+
+    const {products, error, skileton} = useSelector(state => state.product)
  
   return (
     <>
 
        
-        <SingleProduct single={  single } handleSingleHide =  { handleSingleHide }  />
+        <SingleProductModal single={  single } handleSingleHide =  { handleSingleHide }  />
         <div className="header">
             <div className="container">
                 <div className="row">
@@ -26,6 +34,7 @@ const Shop = () => {
                 </div>
             </div>
         </div>
+
         <div className="menu">
             <div className="container">
                 <div className="row">
@@ -82,83 +91,53 @@ const Shop = () => {
                     <div className="row shop-area">
                         <h2>Our Products</h2>
 
-                        <div className="col-md-4 shop-item mb-5">
-                            <div className="card">
-                                <img className='card-img' src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" />
-                                <div className="card-body">
-                                    <h3>Sony A7s iii</h3>                                
-                                </div>
-                                <div className="card-footer">
-                                    <p>Price : $ 1200 </p>
-                                    <button onClick={handleSingleShow} className='btn btn-sm btn-info'>Quick View</button>
-                                </div>
+                        <div  className="col-md-4 shop-item mb-5">
+                            <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                            <Skeleton  height={200} width={'100%'} />
+                            <div style={{textAlign: 'left'}}>
+                                <Skeleton height={50} width={'100%'}/>
+                                <Skeleton height={20} width={'60%'}/>
+                                <Skeleton height={20} width={'30%'}/>
+                                <Skeleton height={20} width={'20%'}/>
+                            </div>
+                            
                             </div>
                         </div>
 
-                        <div className="col-md-4 shop-item mb-5">
-                            <div className="card">
-                                <img className='card-img' src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" />
-                                <div className="card-body">
-                                    <h3>Sony A7s iii</h3>                                
-                                </div>
-                                <div className="card-footer">
-                                    <p>Price : $ 1200 </p>
-                                    <button className='btn btn-sm btn-info'>Quick View</button>
-                                </div>
-                            </div>
-                        </div>
+                        {
+                            products && products.map( (data, index) => 
+                                <>
+                                    <div className="col-md-4 shop-item mb-5">
+                                        <div className="card">
+                                            <img style={{padding: '5px', maxHeight:'250px', objectFit: 'cover'}} className='card-img' src={`http://localhost:5050/images/product/${data.photo}`} alt="" />
+                                            <div className="card-body">
+                                                <h3>{data.name}</h3>                                
+                                            </div>
+                                            <div className="card-footer">
+                                                {
+                                                    !data.sale_price && <>
+                                                      <p>Price : $ {data.regular_price}</p>
 
-                        <div className="col-md-4 shop-item mb-5">
-                            <div className="card">
-                                <img className='card-img' src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" />
-                                <div className="card-body">
-                                    <h3>Sony A7s iii</h3>                                
-                                </div>
-                                <div className="card-footer">
-                                    <p>Price : $ 1200 </p>
-                                    <button className='btn btn-sm btn-info'>Quick View</button>
-                                </div>
-                            </div>
-                        </div>
+                                                    </>
+                                                }
+                                                {
+                                                   data.sale_price && <>
+                                                    <p>Price : $ <s>{data.regular_price}</s></p>
+                                                    <p style={{color:'green'}}>Sale Price : $ {data.sale_price}</p>
+                                                   </> 
+                                                }
+                                                
+                                                <button onClick={() => handleSingleShow(data._id)} className='btn btn-sm btn-info'>Quick View</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        }
 
-                        <div className="col-md-4 shop-item mb-5">
-                            <div className="card">
-                                <img className='card-img' src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" />
-                                <div className="card-body">
-                                    <h3>Sony A7s iii</h3>                                
-                                </div>
-                                <div className="card-footer">
-                                    <p>Price : $ 1200 </p>
-                                    <button className='btn btn-sm btn-info'>Quick View</button>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className="col-md-4 shop-item mb-5">
-                            <div className="card">
-                                <img className='card-img' src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" />
-                                <div className="card-body">
-                                    <h3>Sony A7s iii</h3>                                
-                                </div>
-                                <div className="card-footer">
-                                    <p>Price : $ 1200 </p>
-                                    <button className='btn btn-sm btn-info'>Quick View</button>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className="col-md-4 shop-item mb-5">
-                            <div className="card">
-                                <img className='card-img' src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" />
-                                <div className="card-body">
-                                    <h3>Sony A7s iii</h3>                                
-                                </div>
-                                <div className="card-footer">
-                                    <p>Price : $ 1200 </p>
-                                    <button className='btn btn-sm btn-info'>Quick View</button>
-                                </div>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>

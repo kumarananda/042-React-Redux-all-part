@@ -2,4 +2,9 @@
 export const PRODUCT_REQUEST = 'PRODUCT_REQUEST';
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 export const PRODUCT_FAIL = 'PRODUCT_FAIL';
+export const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
+export const SINGLE_PRODUCT_F_REUDX = 'SINGLE_PRODUCT_F_REUDX';
+
+export const REQ_SUCCESS = 'REQ_SUCCESS';
+export const REQ_FAIL = 'REQ_FAIL';
 

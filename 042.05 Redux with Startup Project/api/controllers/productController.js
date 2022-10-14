@@ -12,10 +12,20 @@ export const getAllProduct = async (req, res, next) => {
 
 // get all product
 export const createProduct = async (req, res, next) => {
-    // console.log(req.files.photo[0].filename);
+    console.log('createProduct called');
+    
     let gallery = [];
-    for( let i = 0; i < req.files.gallery.length; i++ ){
-        gallery.push(req.files.gallery[i].filename);
+    if(req.files.gallery){
+        for( let i = 0; i < req.files.gallery.length; i++ ){
+            gallery.push(req.files.gallery[i].filename);
+        }
+    }else{
+        console.log('Gallary not entred');
+    }
+
+    let photo = 'deafult.png'
+    if(req.files.photo){
+        photo = req.files.photo[0].filename
     }
 
     try {
@@ -23,7 +33,8 @@ export const createProduct = async (req, res, next) => {
         const products = await Product.create({
             ...req.body,
             // photo : req.files.photo.filename,
-            photo : req.files.photo[0].filename,
+            // photo : req.files.photo[0].filename,
+            photo : photo,
             gallery : gallery,
             category : req.body.category.split(','),
             tags : req.body.tags.split(','),
@@ -33,6 +44,7 @@ export const createProduct = async (req, res, next) => {
 
         // if success full
         if(products){
+            console.log('product created');
             res.status(201).json({
                 message : "Product create successfull"
             })

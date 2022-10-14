@@ -5,7 +5,9 @@
  const initialState = {
     products : [],
     skileton : false,
-    error : null
+    error : null,
+    reqSucc : true,
+    singleProduct : {}
 };
 
 export default initialState;
