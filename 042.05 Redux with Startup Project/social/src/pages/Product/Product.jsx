@@ -77,7 +77,7 @@ const Product = () => {
                                         <td>{data.name}</td>
                                         <td>{data.regular_price}</td>
                                         <td>{data.sale_price}</td>
-                                        <td>{data.photo}</td>
+                                        <td>{data.stock}</td>
                                         <td><img style={{height: '30px', width:'40px', objectFit: 'cover'}} src={`http://localhost:5050/images/product/${data.photo}`} /></td>
                                         <td>
                                             <a onClick={() => handleSingleShow(data._id)} className='text-info' href="#"><i className='fa fa-eye'></i></a>

@@ -43,7 +43,7 @@ export const getAllProduct = () => async (dispatch) => {
         // .catch(error =>  dispatch(productFail(error.message))
         // )
         setTimeout(() => { // SetTimeout only for skeleton effect show
-            axios.get('http://localhost:5050/api/v1/product')
+            axios.get('/api/v1/product')
             .then(res => {
               dispatch(productSuccess(res.data))
             })
@@ -76,7 +76,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
     
     try{
         
-        await axios.get(`http://localhost:5050/api/v1/product/${id}`)
+        await axios.get(`/api/v1/product/${id}`)
         .then(res => {
             dispatch(singleProduct(res.data)) //pattern >> data fron server 
 
@@ -96,7 +96,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
     
     try{
         console.log(data);
-        await axios.post('http://localhost:5050/api/v1/product', data)
+        await axios.post('/api/v1/product', data)
         .then(res => {
             console.log(res.data)
         // req_success()
@@ -106,6 +106,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         //     type : PRODUCTED_CREATED,
         //     payload : res.data
         // }) // with redux manage
+        
         swal('Successfull', 'Product Created')
         e.target.reset()
         setInput({
