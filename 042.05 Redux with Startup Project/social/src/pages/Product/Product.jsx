@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getSingleProduct } from '../../redux/product/action';
+import swal from 'sweetalert';
+import { deleteProduct, getSingleProduct } from '../../redux/product/action';
 import SingleProductModal from '../Shop/SingleProductModal';
 import './Product.css';
 
@@ -14,7 +15,29 @@ const Product = () => {
         setSingle(true)
     };
     const handleSingleHide = () => setSingle(false);
+    // handle ProductDelete 
+    const handleProductDelete = (e, id) => {
+        e.preventDefault()
 
+        // 
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                dispatch(deleteProduct(id))
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+              });
+            } else {
+              swal("Your imaginary file is safe!");
+            }
+          });
+    }
     const {products, error, skileton} = useSelector(state => state.product)
 
     // console.log(products);
@@ -47,18 +70,19 @@ const Product = () => {
                         </thead>
                         <tbody>
                             {
+                                
                                 products.map((data, index) => 
                                     <tr>
                                         <td>{index + 1 }</td>
                                         <td>{data.name}</td>
                                         <td>{data.regular_price}</td>
                                         <td>{data.sale_price}</td>
-                                        <td>{data.stock}</td>
-                                        <td><img src="https://www.bhphotovideo.com/images/images2500x2500/sony_ilce7sm3_b_alpha_a7s_iii_mirrorless_1577838.jpg" alt="" /></td>
+                                        <td>{data.photo}</td>
+                                        <td><img style={{height: '30px', width:'40px', objectFit: 'cover'}} src={`http://localhost:5050/images/product/${data.photo}`} /></td>
                                         <td>
                                             <a onClick={() => handleSingleShow(data._id)} className='text-info' href="#"><i className='fa fa-eye'></i></a>
-                                            <a className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
-                                            <a className='text-danger' href="#"><i className='fa fa-trash'></i></a>
+                                            <a onClick={(e) => handleSingleShow(e, data._id)} className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
+                                            <a onClick={(e) => handleProductDelete(e, data._id)} className='text-danger' href="#"><i className='fa fa-trash'></i></a>
                                         </td>
                                     </tr>
                                 )

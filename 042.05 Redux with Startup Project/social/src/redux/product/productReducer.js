@@ -13,25 +13,19 @@ const productReducer = (state = initialState, {type, payload}) => {
         case PRODUCT_REQUEST :
             return {
                 ...state,
-                skileton : true
+                skeleton : true
             }
         case PRODUCT_SUCCESS :
             return {
                 ...state,
-                skileton : false,
+                skeleton : false,
                 products : payload,
                 error : null
             }
         case PRODUCT_FAIL :
             return {
                 ...state,
-                skileton : false,
-                error : payload
-            }
-        case PRODUCT_FAIL :
-            return {
-                ...state,
-                skileton : false,
+                skeleton : false,
                 error : payload
             }
         case SINGLE_PRODUCT :

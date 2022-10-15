@@ -16,7 +16,7 @@ const Shop = () => {
     };
     const handleSingleHide = () => setSingle(false);
 
-    const {products, error, skileton} = useSelector(state => state.product)
+    const {products, error, skeleton} = useSelector(state => state.product)
  
   return (
     <>
@@ -90,26 +90,104 @@ const Shop = () => {
                 <div className="col-md-9">
                     <div className="row shop-area">
                         <h2>Our Products</h2>
+                        {
+                            skeleton && <> 
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            <div  className="col-md-4 shop-item mb-5">
+                                <div style={{padding: '5px', textAlign: 'center'}} className="card">
+                                <Skeleton  height={200} width={'100%'} />
+                                <div style={{textAlign: 'left'}}>
+                                    <Skeleton height={30} width={'100%'}/>
+                                    <Skeleton height={20} width={'60%'}/>
+                                    <Skeleton height={20} width={'30%'}/>
+                                    <Skeleton circle height={30} width={30}/>
+                                </div>
+                                
+                                </div>
+                            </div>
+                            </>
 
-                        <div  className="col-md-4 shop-item mb-5">
-                            <div style={{padding: '5px', textAlign: 'center'}} className="card">
-                            <Skeleton  height={200} width={'100%'} />
-                            <div style={{textAlign: 'left'}}>
-                                <Skeleton height={50} width={'100%'}/>
-                                <Skeleton height={20} width={'60%'}/>
-                                <Skeleton height={20} width={'30%'}/>
-                                <Skeleton height={20} width={'20%'}/>
-                            </div>
+                        }
                             
-                            </div>
-                        </div>
+
 
                         {
                             products && products.map( (data, index) => 
                                 <>
                                     <div className="col-md-4 shop-item mb-5">
                                         <div className="card">
-                                            <img style={{padding: '5px', maxHeight:'250px', objectFit: 'cover'}} className='card-img' src={`http://localhost:5050/images/product/${data.photo}`} alt="" />
+                                            <img style={{padding: '5px', height:'200px', objectFit: 'cover'}} className='card-img' src={`http://localhost:5050/images/product/${data.photo}`} alt="" />
                                             <div className="card-body">
                                                 <h3>{data.name}</h3>                                
                                             </div>

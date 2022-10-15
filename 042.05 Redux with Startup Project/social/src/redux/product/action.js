@@ -36,12 +36,21 @@ export const getAllProduct = () => async (dispatch) => {
     
     try{
         dispatch(productRequest())
-        await axios.get('http://localhost:5050/api/v1/product')
-        .then(res => {
-          dispatch(productSuccess(res.data))
-        })
-        .catch(error =>  dispatch(productFail(error.message))
-        )
+        // await axios.get('http://localhost:5050/api/v1/product')
+        // .then(res => {
+        //   dispatch(productSuccess(res.data))
+        // })
+        // .catch(error =>  dispatch(productFail(error.message))
+        // )
+        setTimeout(() => { // SetTimeout only for skeleton effect show
+            axios.get('http://localhost:5050/api/v1/product')
+            .then(res => {
+              dispatch(productSuccess(res.data))
+            })
+            .catch(error =>  dispatch(productFail(error.message))
+            )
+        }, 1000);
+
 
     }catch(error){
         dispatch(productFail(error.message))
@@ -50,7 +59,7 @@ export const getAllProduct = () => async (dispatch) => {
 
 }
 
-// single data from previously loded redux data 
+// single data from previously loaded redux data 
 export const getSingleProduFromRedux =   (id) => ({ 
     type : SINGLE_PRODUCT_F_REUDX,
     payload : id
@@ -118,6 +127,26 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
             productFail(error.message)
             
         })
+    }
+    
+
+}
+
+// delete product
+export const deleteProduct = (id) => async (dispatch) => {
+    
+    try{
+        
+        await axios.delete(`http://localhost:5050/api/v1/product/${id}`)
+        .then(res => {
+            dispatch(getAllProduct())
+
+        })
+        .catch(error =>  dispatch(productFail(error.message))
+        )
+
+    }catch(error){
+        dispatch(productFail(error.message))
     }
     
 

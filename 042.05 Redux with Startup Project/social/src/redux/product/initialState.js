@@ -4,7 +4,7 @@
 // initaila state
  const initialState = {
     products : [],
-    skileton : false,
+    skeleton : false,
     error : null,
     reqSucc : true,
     singleProduct : {}
