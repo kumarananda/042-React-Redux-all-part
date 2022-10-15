@@ -1,5 +1,5 @@
 
-import { PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRO_CREATE_FAIL, PRO_CREATE_SUCC, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes";
+import { DELETE_PRODUCT, PRODUCTED_CREATED, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRO_CREATE_FAIL, PRO_CREATE_SUCC, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes";
 import initialState, {  } from "./initialState";
 
 
@@ -39,6 +39,16 @@ const productReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 singleProduct : state.products.find(data => data._id === payload)  
+            }
+        // case PRODUCTED_CREATED :
+        //     return {
+        //         ...state,
+        //         products : state.products.find(data => data._id === payload)  
+        //     }
+        case DELETE_PRODUCT :
+            return {
+                ...state,
+                products : state.products.filter(data => data._id !== payload)  
             }
 
         case REQ_FAIL :

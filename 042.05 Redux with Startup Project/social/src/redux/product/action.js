@@ -1,5 +1,5 @@
 import axios from "axios"
-import { PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
+import { DELETE_PRODUCT, PRODUCTED_CREATED, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
 import swal from "sweetalert"
 
 
@@ -98,8 +98,14 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         console.log(data);
         await axios.post('http://localhost:5050/api/v1/product', data)
         .then(res => {
+            console.log(res.data)
         // req_success()
-        dispatch(getAllProduct())
+        dispatch(getAllProduct()) // with server req
+
+        // dispatch({       
+        //     type : PRODUCTED_CREATED,
+        //     payload : res.data
+        // }) // with redux manage
         swal('Successfull', 'Product Created')
         e.target.reset()
         setInput({
@@ -139,7 +145,31 @@ export const deleteProduct = (id) => async (dispatch) => {
         
         await axios.delete(`http://localhost:5050/api/v1/product/${id}`)
         .then(res => {
+            // dispatch(getAllProduct()) // with server req
+            dispatch({                  //  with redux manage
+                type : DELETE_PRODUCT,
+                payload : id
+            })
+
+        })
+        .catch(error =>  dispatch(productFail(error.message))
+        )
+
+    }catch(error){
+        dispatch(productFail(error.message))
+    }
+    
+
+}
+// edit product
+export const editProduct = (id) => async (dispatch) => {
+    
+    try{
+        
+        await axios.patch(`http://localhost:5050/api/v1/product/${id}`)
+        .then(res => {
             dispatch(getAllProduct())
+
 
         })
         .catch(error =>  dispatch(productFail(error.message))
