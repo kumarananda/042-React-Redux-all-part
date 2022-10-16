@@ -108,7 +108,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         }) // with redux manage
         
         swal('Successfull', 'Product Created')
-        
+
         // e.target.reset()
         // setInput({
         //     name : '', 
@@ -117,7 +117,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         //     stock: '',
         //     photo: '', 
 
-        // })
+        // }) // from reset
 
           
         })
