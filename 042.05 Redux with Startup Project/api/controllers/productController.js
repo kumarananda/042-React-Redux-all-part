@@ -30,7 +30,7 @@ export const createProduct = async (req, res, next) => {
 
     try {
 
-        const products = await Product.create({
+        const product = await Product.create({
             ...req.body,
             // photo : req.files.photo.filename,
             // photo : req.files.photo[0].filename,
@@ -43,11 +43,13 @@ export const createProduct = async (req, res, next) => {
         // console.log(products);
 
         // if success full
-        if(products){
+        if(product){
             console.log('product created');
             res.status(201).json({
-                message : "Product create successfull"
-            })
+                message : "Product create successfull",
+                product : product
+            });
+            
         }else{
             next(createError(401, 'Product created failed'))
     

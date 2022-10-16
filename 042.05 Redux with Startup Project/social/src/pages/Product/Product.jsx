@@ -38,6 +38,12 @@ const Product = () => {
             }
           });
     }
+    // handle Product Edit 
+    const handleSingleEdit = (e, id) => {
+        e.preventDefault()
+
+
+    }
     const {products, error, skileton} = useSelector(state => state.product)
 
     // console.log(products);
@@ -81,7 +87,7 @@ const Product = () => {
                                         <td><img style={{height: '30px', width:'40px', objectFit: 'cover'}} src={`http://localhost:5050/images/product/${data.photo}`} /></td>
                                         <td>
                                             <a onClick={() => handleSingleShow(data._id)} className='text-info' href="#"><i className='fa fa-eye'></i></a>
-                                            <a onClick={(e) => handleSingleShow(e, data._id)} className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
+                                            <a onClick={(e) => handleSingleEdit(e, data._id)} className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
                                             <a onClick={(e) => handleProductDelete(e, data._id)} className='text-danger' href="#"><i className='fa fa-trash'></i></a>
                                         </td>
                                     </tr>

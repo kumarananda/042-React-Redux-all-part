@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DELETE_PRODUCT, PRODUCTED_CREATED, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
+import { DELETE_PRODUCT, PRODUCTED_ADDED, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
 import swal from "sweetalert"
 
 
@@ -100,23 +100,24 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         .then(res => {
             console.log(res.data)
         // req_success()
-        dispatch(getAllProduct()) // with server req
+        // dispatch(getAllProduct()) // with server req
 
-        // dispatch({       
-        //     type : PRODUCTED_CREATED,
-        //     payload : res.data
-        // }) // with redux manage
+        dispatch({       
+            type : PRODUCTED_ADDED,
+            payload : res.data.product
+        }) // with redux manage
         
         swal('Successfull', 'Product Created')
-        e.target.reset()
-        setInput({
-            name : '', 
-            reg_price: '', 
-            sale_price: '', 
-            stock: '',
-            photo: '', 
+        
+        // e.target.reset()
+        // setInput({
+        //     name : '', 
+        //     reg_price: '', 
+        //     sale_price: '', 
+        //     stock: '',
+        //     photo: '', 
 
-        })
+        // })
 
           
         })

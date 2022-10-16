@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended : false}))
 app.use(cookieParser());
 
 // 
-app.use(cors())
+// app.use(cors())  can use server without cors when use proxy on frontend for devdlopment
 
 // env variabels
 const PORT = process.env.SERVER_PORT 
