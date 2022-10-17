@@ -33,20 +33,20 @@ export const getAllProduct = () => async (dispatch) => {
     
     try{
         dispatch(productRequest())
-        // await axios.get('http://localhost:5050/api/v1/product')
-        // .then(res => {
-        //   dispatch(productSuccess(res.data))
-        // })
-        // .catch(error =>  dispatch(productFail(error.message))
-        // )
-        setTimeout(() => { // SetTimeout only for skeleton effect show
-            axios.get('/api/v1/product')
-            .then(res => {
-              dispatch(productSuccess(res.data))
-            })
-            .catch(error =>  dispatch(productFail(error.message))
-            )
-        }, 1000);
+        await axios.get('http://localhost:5050/api/v1/product')
+        .then(res => {
+          dispatch(productSuccess(res.data))
+        })
+        .catch(error =>  dispatch(productFail(error.message))
+        )
+        // setTimeout(() => { // SetTimeout only for skeleton effect show
+        //     axios.get('/api/v1/product')
+        //     .then(res => {
+        //       dispatch(productSuccess(res.data))
+        //     })
+        //     .catch(error =>  dispatch(productFail(error.message))
+        //     )
+        // }, 1000);
 
 
     }catch(error){
@@ -101,7 +101,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
 
         dispatch({       
             type : PRODUCTED_ADDED,
-            payload : res.data.product
+            payload : res.data
         }) //new data with redux manage
 
 
@@ -115,7 +115,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         swal('Successfull', 'Product Created')
 
         // formReset with paramiter >> on called function >> createProduct
-        e.target.reset()
+        // e.target.reset()
         setInput({
             name : '', 
             reg_price: '', 

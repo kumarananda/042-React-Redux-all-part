@@ -53,8 +53,7 @@ const productReducer = (state = initialState, {type, payload}) => {
         case PRODUCTED_ADDED :
             return {
                 ...state,
-                products : state.products.push(payload) 
-                // products : [...state.products, payload ]  
+                products : [...state.products, payload ]  
             }
 
         // case FORM_RESET :

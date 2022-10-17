@@ -1,6 +1,6 @@
 import Product from "../models/Product.js"
 import createError from "./createError.js";
-import fs from "fs";
+import {unlink, unlinkSync} from "fs";
 import path, {resolve} from "path";
 
 const __dirname = resolve()
@@ -89,14 +89,21 @@ export const deleteProduct = async (req, res, next) => {
 
     const {id } = req.params;
 
-
     try {
         // const product = await Product.findByIdAndDelete(id);
         const product = await Product.findById(id);
-        // fs.unlink(path.join(__dirname,  `api/public/images/product/${product.photo}`))
+
+        // unlink((path.join(__dirname,  `api/public/images/product/${product.photo}`)), (error) => {
+        //     console.log(error);
+        // })
+        // >>>>>>>> or
+        unlinkSync((path.join(__dirname,  `api/public/images/product/${product.photo}`)))
+
+        
+
         console.log(product.photo);
         console.log('eeeeeee');
-        console.log(__dirname,  `api/public/images/product/${product.photo}`);
+        // console.log(__dirname,  `api/public/images/product/${product.gallery}`);
         if(!product){
             res.status(401).json({
                 message : "Product not found"

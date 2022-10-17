@@ -207,11 +207,11 @@ const CreateProduct = () => {
                     <div className="my-3">
                         <label >Tags</label>
                         <br />
-                        <label >
+                        <label>
                             <input onChange={handleTagsChange}  type="checkbox"  value='Eid'/> Eid
                         </label>
                         <br />
-                        <label >
+                        <label  >
                             <input onChange={handleTagsChange}   type="checkbox"  value='Puja'/> Puja
                         </label>
                         <br />

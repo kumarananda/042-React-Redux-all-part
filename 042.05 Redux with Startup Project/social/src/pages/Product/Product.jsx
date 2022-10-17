@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import { deleteProduct, getSingleProduct } from '../../redux/product/action';
+import { deleteProduct, getAllProduct, getSingleProduct } from '../../redux/product/action';
 import SingleProductModal from '../Shop/SingleProductModal';
 import './Product.css';
 
@@ -47,7 +48,9 @@ const Product = () => {
     }
     const {products, error, skileton} = useSelector(state => state.product)
 
-    // console.log(products);
+    useEffect(()=>{
+        dispatch(getAllProduct())
+    },[dispatch])
 
   return (
     <>
@@ -77,9 +80,10 @@ const Product = () => {
                         </thead>
                         <tbody>
                             {
+                                products && 
                                 
-                                products.map((data, index) => 
-                                    <tr>
+                                products?.map((data, index) => 
+                                    <tr key={data._id}>
                                         <td>{index + 1 }</td>
                                         <td>{data.name}</td>
                                         <td>{data.regular_price}</td>

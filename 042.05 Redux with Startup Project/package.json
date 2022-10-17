@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-
     "server": "nodemon api/server.js",
     "social": "npm start --prefix social",
     "start": "concurrently \"npm run server\" \"npm run social\""
@@ -24,11 +23,10 @@
     "mongoose": "^6.4.6",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.19",
+    "react-loading-skeleton": "^3.1.0",
     "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "concurrently": "^7.3.0"
   }
-  
-  
 }
