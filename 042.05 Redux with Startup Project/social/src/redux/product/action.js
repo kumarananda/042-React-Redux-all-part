@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DELETE_PRODUCT, PRODUCTED_ADDED, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
+import { DELETE_PRODUCT,  PRODUCTED_ADDED, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, REQ_FAIL, REQ_SUCCESS, SINGLE_PRODUCT, SINGLE_PRODUCT_F_REUDX } from "./actionTypes"
 import swal from "sweetalert"
 
 
@@ -21,13 +21,10 @@ export  const productFail = (payload) => ({
     payload
 })
 // product REQ_SUCCESS
-export  const req_success = () => ({ 
-    type : REQ_SUCCESS
-})
-// product REQ_FAIL
-export  const req_fail = () => ({ 
-    type : REQ_FAIL
-})
+// export  const formReset = () => ({ 
+//     type : FORM_RESET,
+//     payload : false
+// })
 
 
 
@@ -105,24 +102,32 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         dispatch({       
             type : PRODUCTED_ADDED,
             payload : res.data.product
-        }) // with redux manage
+        }) //new data with redux manage
+
+
+        // dispatch({
+        //     type : FORM_RESET,
+        //     payload : true
+        // })
+        
+  
         
         swal('Successfull', 'Product Created')
 
-        // e.target.reset()
-        // setInput({
-        //     name : '', 
-        //     reg_price: '', 
-        //     sale_price: '', 
-        //     stock: '',
-        //     photo: '', 
+        // formReset with paramiter >> on called function >> createProduct
+        e.target.reset()
+        setInput({
+            name : '', 
+            reg_price: '', 
+            sale_price: '', 
+            stock: '',
+            photo: '', 
 
-        // }) // from reset
+        }) // from reset
 
           
         })
         .catch(error => dispatch(() => {
-            req_fail()
             productFail(error.message)
             
         }) )
@@ -131,7 +136,6 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
 
         // dispatch(productFail(error.message))
         dispatch(() => {
-            req_fail()
             productFail(error.message)
             
         })

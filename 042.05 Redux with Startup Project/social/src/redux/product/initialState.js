@@ -6,8 +6,9 @@
     products : [],
     skeleton : false,
     error : null,
-    reqSucc : true,
-    singleProduct : {}
+    singleProduct : {},
+
+    // reset : false,
 };
 
 export default initialState;

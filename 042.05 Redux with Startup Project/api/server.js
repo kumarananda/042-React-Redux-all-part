@@ -21,7 +21,9 @@ app.use(express.urlencoded({extended : false}))
 app.use(cookieParser());
 
 // 
-// app.use(cors())  can use server without cors when use proxy on frontend for devdlopment
+//can use server without cors when use proxy on frontend for devdlopment
+// delete requist is not working without cors
+app.use(cors()) 
 
 // env variabels
 const PORT = process.env.SERVER_PORT 

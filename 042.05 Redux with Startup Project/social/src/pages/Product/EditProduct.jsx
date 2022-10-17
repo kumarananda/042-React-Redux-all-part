@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import swal from 'sweetalert' 
 import { useDispatch, useSelector } from 'react-redux';
-import { createProduct, formReset } from '../../redux/product/action';
+import { createProduct } from '../../redux/product/action';
 
-const CreateProduct = () => {
+const EditProduct = () => {
 
     // use dispatch 
     const dispatch = useDispatch()
@@ -236,4 +235,4 @@ const CreateProduct = () => {
   )
 };
 
-export default CreateProduct;
+export default EditProduct;

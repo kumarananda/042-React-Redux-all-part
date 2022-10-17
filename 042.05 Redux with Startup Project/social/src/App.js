@@ -6,6 +6,7 @@ import './App.css';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllProduct } from "./redux/product/action";
+import EditProduct from "./pages/Product/EditProduct";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={ <Shop /> } />
         <Route path="/admin/product" element={ <Product /> } />
         <Route path="/admin/product/create" element={ <CreateProduct /> } />
+        <Route path="/admin/product/edit" element={ <EditProduct /> } />
       </Routes>
 
     </>

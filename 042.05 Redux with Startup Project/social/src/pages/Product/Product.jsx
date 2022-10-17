@@ -39,8 +39,9 @@ const Product = () => {
           });
     }
     // handle Product Edit 
-    const handleSingleEdit = (e, id) => {
-        e.preventDefault()
+    const handleSingleEdit = ( id )  => {
+        
+
 
 
     }
@@ -87,7 +88,7 @@ const Product = () => {
                                         <td><img style={{height: '30px', width:'40px', objectFit: 'cover'}} src={`http://localhost:5050/images/product/${data.photo}`} /></td>
                                         <td>
                                             <a onClick={() => handleSingleShow(data._id)} className='text-info' href="#"><i className='fa fa-eye'></i></a>
-                                            <a onClick={(e) => handleSingleEdit(e, data._id)} className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
+                                            <Link to={'/admin/product/edit'} onClick={() => handleSingleEdit( data._id)} className='text-warning m-3' ><i className='fa fa-edit'></i></Link>
                                             <a onClick={(e) => handleProductDelete(e, data._id)} className='text-danger' href="#"><i className='fa fa-trash'></i></a>
                                         </td>
                                     </tr>

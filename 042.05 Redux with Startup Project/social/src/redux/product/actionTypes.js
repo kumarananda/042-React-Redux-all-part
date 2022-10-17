@@ -7,6 +7,8 @@ export const SINGLE_PRODUCT_F_REUDX = 'SINGLE_PRODUCT_F_REUDX';
 export const PRODUCTED_ADDED = 'PRODUCTED_ADDED';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
-export const REQ_SUCCESS = 'REQ_SUCCESS';
-export const REQ_FAIL = 'REQ_FAIL';
+
+// export const FORM_RESET = 'FORM_RESET';
+
+
 
