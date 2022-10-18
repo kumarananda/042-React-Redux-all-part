@@ -1,6 +1,6 @@
 import Product from "../models/Product.js"
 import createError from "./createError.js";
-import {unlink, unlinkSync} from "fs";
+import {unlink, unlinkSync, readFileSync, readFile} from "fs";
 import path, {resolve} from "path";
 
 const __dirname = resolve()
@@ -97,12 +97,33 @@ export const deleteProduct = async (req, res, next) => {
         //     console.log(error);
         // })
         // >>>>>>>> or
-        unlinkSync((path.join(__dirname,  `api/public/images/product/${product.photo}`)))
+
+        const photoPath = path.join(__dirname,  `api/public/images/product/${product.photo}`)
+        readFile(photoPath, (err, data) => {
+
+            if(err){
+                console.log('File not found');
+            }
+            if(data){
+                unlinkSync(photoPath)
+            }
+            
+         })
+          
+
+        // const photoFileRead = readFileSync(path.join(__dirname,  `api/public/images/product/${product.photo}`))
+
+        // if(photoFileRead){
+        //     unlinkSync(path.join(__dirname,  `api/public/images/product/${product.photo}`))
+        // }else{
+        //     console.log('file not found');
+        // }
+        
 
         
 
-        console.log(product.photo);
-        console.log('eeeeeee');
+        // console.log(product.photo);
+        // console.log('eeeeeee');
         // console.log(__dirname,  `api/public/images/product/${product.gallery}`);
         if(!product){
             res.status(401).json({
