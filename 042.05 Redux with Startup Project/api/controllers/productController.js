@@ -1,7 +1,8 @@
 import Product from "../models/Product.js"
 import createError from "./createError.js";
-import {unlink, unlinkSync, readFileSync, readFile} from "fs";
+import {unlink, unlinkSync, readFileSync, readFile,  rename} from "fs";
 import path, {resolve} from "path";
+import { gallTrash } from "../utility/fileTrash.js";
 
 const __dirname = resolve()
 
@@ -90,41 +91,23 @@ export const deleteProduct = async (req, res, next) => {
     const {id } = req.params;
 
     try {
-        // const product = await Product.findByIdAndDelete(id);
-        const product = await Product.findById(id);
+        const product = await Product.findByIdAndDelete(id);
 
-        // unlink((path.join(__dirname,  `api/public/images/product/${product.photo}`)), (error) => {
-        //     console.log(error);
-        // })
-        // >>>>>>>> or
+        // photo trash
+        if(product.photo){
+            gallTrash(product.photo)
+        }else{
+            console.log('Gallary data empty');
+        }
+        // gallary trash
+        if(product.gallery.length){     
+           for (let i = 0; i < product.gallery.length; i++) {
+               gallTrash(product.gallery[i])
+           }
+        }else{
+           console.log('Gallary data empty');
+        }
 
-        const photoPath = path.join(__dirname,  `api/public/images/product/${product.photo}`)
-        readFile(photoPath, (err, data) => {
-
-            if(err){
-                console.log('File not found');
-            }
-            if(data){
-                unlinkSync(photoPath)
-            }
-            
-         })
-          
-
-        // const photoFileRead = readFileSync(path.join(__dirname,  `api/public/images/product/${product.photo}`))
-
-        // if(photoFileRead){
-        //     unlinkSync(path.join(__dirname,  `api/public/images/product/${product.photo}`))
-        // }else{
-        //     console.log('file not found');
-        // }
-        
-
-        
-
-        // console.log(product.photo);
-        // console.log('eeeeeee');
-        // console.log(__dirname,  `api/public/images/product/${product.gallery}`);
         if(!product){
             res.status(401).json({
                 message : "Product not found"
