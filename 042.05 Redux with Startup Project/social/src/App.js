@@ -12,7 +12,6 @@ function App() {
 
   const dispatch = useDispatch();
   
-// 0000 https://www.youtube.com/watch?v=XmcViFMk9V8&list=PLVAkv8bX85N-oaEI8jGJcmNKBd6yc9N-M&index=131
   useEffect(() => {
 
     dispatch(getAllProduct())

@@ -1,11 +1,7 @@
 import mongoose from "mongoose";
 
-
-
-
 // create a mongoDB connection
 const mongoDBConnect = async() => {
-
     try {
 
         const connect = await mongoose.connect(process.env.MONGO_STRING);
@@ -14,9 +10,6 @@ const mongoDBConnect = async() => {
     } catch (error) {
         console.log(error);
     }
-
-
-    
 }
 
 export default mongoDBConnect;

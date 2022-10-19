@@ -89,13 +89,13 @@ export const getSingleProduct = (id) => async (dispatch) => {
 }
 
 // create product
-export const createProduct = (data,e, setInput) => async (dispatch) => {
+export const createProduct = (data, e, setInput) => async (dispatch) => {
     
     try{
         console.log(data);
         await axios.post('/api/v1/product', data)
         .then(res => {
-            console.log(res.data)
+            console.log(res)
         // req_success()
         // dispatch(getAllProduct()) // with server req
 
@@ -105,17 +105,10 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
         }) //new data with redux manage
 
 
-        // dispatch({
-        //     type : FORM_RESET,
-        //     payload : true
-        // })
-        
-  
-        
-        swal('Successfull', 'Product Created')
+        swal('Successfull', 'Product Createdgggg')
 
         // formReset with paramiter >> on called function >> createProduct
-        // e.target.reset()
+        e.target.reset()
         setInput({
             name : '', 
             reg_price: '', 
@@ -124,6 +117,7 @@ export const createProduct = (data,e, setInput) => async (dispatch) => {
             photo: '', 
 
         }) // from reset
+        res.redirect('/admin/product/create');
 
           
         })

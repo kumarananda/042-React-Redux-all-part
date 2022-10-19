@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { deleteProduct, getAllProduct, getSingleProduct } from '../../redux/product/action';
 import SingleProductModal from '../Shop/SingleProductModal';
+import EditProduct from './EditProduct';
 import './Product.css';
 
 const Product = () => {
+    // edit modal
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const [single, setSingle] = useState(false);
     const dispatch = useDispatch()
     
@@ -40,10 +46,11 @@ const Product = () => {
           });
     }
     // handle Product Edit 
-    const handleSingleEdit = ( id )  => {
-        
+    const handleSingleEdit = (e, id )  => {
+        e.preventDefault()
 
-
+        dispatch(getSingleProduct(id))
+        handleShow()
 
     }
     const {products, error, skileton} = useSelector(state => state.product)
@@ -54,6 +61,7 @@ const Product = () => {
 
   return (
     <>
+        <EditProduct single={  show } handleSingleHide =  { handleClose }  />
         <SingleProductModal single={  single } handleSingleHide =  { handleSingleHide }  />
         <div className='container my-5'>
         <div className="row justify-content-center">
@@ -92,7 +100,7 @@ const Product = () => {
                                         <td><img style={{height: '30px', width:'40px', objectFit: 'cover'}} src={`http://localhost:5050/images/product/${data.photo}`} /></td>
                                         <td>
                                             <a onClick={() => handleSingleShow(data._id)} className='text-info' href="#"><i className='fa fa-eye'></i></a>
-                                            <Link to={'/admin/product/edit'} onClick={() => handleSingleEdit( data._id)} className='text-warning m-3' ><i className='fa fa-edit'></i></Link>
+                                            <a onClick={(e) => handleSingleEdit(e, data._id)} className='text-warning m-3' href="#"><i className='fa fa-edit'></i></a>
                                             <a onClick={(e) => handleProductDelete(e, data._id)} className='text-danger' href="#"><i className='fa fa-trash'></i></a>
                                         </td>
                                     </tr>

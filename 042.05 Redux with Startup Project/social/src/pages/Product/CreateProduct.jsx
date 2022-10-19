@@ -89,13 +89,10 @@ const CreateProduct = () => {
         }));
     }
 
-    // https://www.youtube.com/watch?v=LPpFueI0-Y8&list=PLVAkv8bX85N-oaEI8jGJcmNKBd6yc9N-M&index=130
 
     // handle from submit
     const handleFormdataSubmit = async (e) => {
         e.preventDefault()
-
-
 
         const data = new FormData();
 
@@ -117,27 +114,9 @@ const CreateProduct = () => {
             // formReset with paramiter >> on called function >> createProduct
             dispatch(createProduct(data, e, setInput)) 
 
-            //formReset with redux state value @ failed
-            // if(reset){
-            //     e.target.reset()
-            //     setInput({
-            //         name : '', 
-            //         reg_price: '', 
-            //         sale_price: '', 
-            //         stock: '',
-            //         photo: '', 
-        
-            //     })
-            // } // this try is not success
-            // dispatch(formReset()) // this try is not success
-
-
         }else{
             swal('Faild!', 'Name & reg price is not be empty')
         }
-
-
-
 
     }
 

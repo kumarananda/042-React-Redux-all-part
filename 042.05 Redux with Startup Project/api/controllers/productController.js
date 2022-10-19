@@ -101,9 +101,12 @@ export const deleteProduct = async (req, res, next) => {
         }
         // gallary trash
         if(product.gallery.length){     
-           for (let i = 0; i < product.gallery.length; i++) {
-               gallTrash(product.gallery[i])
-           }
+        //    for (let i = 0; i < product.gallery.length; i++) {
+        //        gallTrash(product.gallery[i])
+        //    }
+        product.gallery.forEach(element => {
+                gallTrash(element)
+            });
         }else{
            console.log('Gallary data empty');
         }
